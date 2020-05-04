@@ -1,0 +1,11 @@
+[
+    {
+      "ParameterKey": "Project",
+      "ParameterValue": "capstone"
+    },
+    {
+      "ParameterKey": "EksVersion",
+      "ParameterValue": "1.16"
+    }
+      
+  ]

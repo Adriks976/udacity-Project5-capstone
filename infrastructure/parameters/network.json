@@ -1,0 +1,11 @@
+[
+    {
+      "ParameterKey": "Project",
+      "ParameterValue": "capstone"
+    },
+    {
+        "ParameterKey": "VpcCIDR",
+        "ParameterValue": "10.0.0.0/16"
+    }
+      
+  ]
