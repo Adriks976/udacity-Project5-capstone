@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="static/app.css">
+  <script type="text/javascript" src="static/app.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  
+   <title>Upload Image</title>
+ </head>
+ <body>
+   
+
+   {% if msg %}
+   {% if "Success" in msg: %}
+        <div class="alert alert-info">
+                        <strong>Success! </strong> {{ msg }}</div>
+        {% endif %}
+
+        {% if "Success" not in msg: %}
+        <div class="alert alert-warning">
+                        {{ msg }}</div>
+        {% endif %}
+
+   {% endif %}
+  
+   <h1>Upload new File</h1>
+   <div class="col-md-6">
+    <div class="form-group">
+        <label>Upload Image</label>
+        <form method=post enctype=multipart/form-data>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-success btn-file">
+                    Browse… <input type="file" name="file" id="imgInp">
+                </span>
+            </span>
+            <input type="text" class="form-control" readonly>
+          </div>
+          <div></div>
+          <div class="text-center"><img class="rounded" id='img-upload'/></div>
+            
+            
+            <input type=submit value=Upload>
+        </form>
+        
+        
+    </div>
+</div>
+   <!-- <form method=post enctype=multipart/form-data>
+     <p><input type=file name=file>
+        <input type=submit value=Upload>
+   </form> -->
+
+   <h1>Result:</h1>
+   {% if img_src %}
+     <img src="{{ img_src }}">
+   {% endif %}
+  
+   {% if extracted_text %}
+     <p>The extracted text from the image above is: </p>
+     <div>
+     {{ extracted_text|safe }}
+    </div>
+   {% else %}
+     The extracted text will be displayed here
+   {% endif %}
+ </body>
+</html>
