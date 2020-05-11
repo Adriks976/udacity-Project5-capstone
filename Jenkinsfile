@@ -15,7 +15,6 @@ pipeline {
     stage('Build docker') {
       app = docker.build("adrik976/udacity-capstone")
       }
-    }
     
   }
 }
