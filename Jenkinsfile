@@ -12,6 +12,12 @@ pipeline {
         sh '. venv/bin/activate && make lint'
       }
     }
+    stage('Build docker') {
+      steps {
+        sh 'echo "$DOCKER_TOKEN" | docker login -u adrik976 --password-stdin'
+        sh 'docker build --tag adrik976/udacity-capstone:latest .'
+      }
+    }
     
   }
 }
