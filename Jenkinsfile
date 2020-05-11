@@ -24,10 +24,10 @@ pipeline {
         script {
           docker.withRegistry('', dockerhubCredentials) {
             app.push()
+          }
         }
       }
     }
-  }
     
-  
+  }
 }
