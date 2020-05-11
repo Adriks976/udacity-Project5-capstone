@@ -12,9 +12,13 @@ pipeline {
         sh '. venv/bin/activate && make lint'
       }
     }
-  }
-  stage('Build docker') {
-    app = docker.build("adrik976/udacity-capstone")
+    stage('Build docker') {
+      steps {
+        script {
+          app = docker.build("adrik976/udacity-capstone")
+        }
+      }
+    }
   }
     
   
