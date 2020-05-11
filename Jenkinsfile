@@ -19,6 +19,14 @@ pipeline {
         }
       }
     }
+    stage('Publish docker') {
+      steps {
+        script {
+          docker.withRegistry('', dockerhubCredentials) {
+            app.push()
+        }
+      }
+    }
   }
     
   
