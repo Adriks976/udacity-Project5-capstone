@@ -13,9 +13,7 @@ pipeline {
       }
     }
     stage('Build docker') {
-      steps {
-        sh 'echo "$DOCKER_TOKEN" | docker login -u adrik976 --password-stdin'
-        sh 'docker build --tag adrik976/udacity-capstone:latest .'
+      app = docker.build("adrik976/udacity-capstone")
       }
     }
     
