@@ -25,7 +25,7 @@ pipeline {
     
     stage('Scan image') {
       steps {
-                aquaMicroscanner localImage: "adrik976/udacity-capstone", notCompliesCmd: 'exit 4', onDisallowed: 'fail', outputFormat: 'html'
+                aquaMicroscanner imageName: "adrik976/udacity-capstone", notCompliesCmd: 'exit 4', onDisallowed: 'fail', outputFormat: 'html'
             }
         }
     stage('Publish docker') {
