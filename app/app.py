@@ -58,7 +58,7 @@ def transformToBytes(photo):
     return byte_im
 
 
-def detect_text(imageBytes): failint
+def detect_text(imageBytes):
 
     client = boto3.client('textract')
     response = client.detect_document_text(Document={'Bytes': imageBytes})
