@@ -7,6 +7,18 @@ Parameters:
     Type: String
 
 Resources:
+  DetectTextPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub "${Project}-capstone-policy"
+      PolicyDocument:
+        Statement:
+        - Effect: Allow
+          Action: 
+          - "textract:DetectDocumentText"
+          Resource: '*'
+      Roles:
+      - !Ref EKSNodegroupRole
   EKSNodegroupRole:
     Type: AWS::IAM::Role
     Properties:

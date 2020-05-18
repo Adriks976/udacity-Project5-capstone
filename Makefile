@@ -32,10 +32,4 @@ lint:
 run_docker:
 	./tools/run_docker.sh
 
-upload_docker:
-	./upload_docker.sh
-
-run_kubernetes:
-	./run_kubernetes.sh
-
 all: install lint test

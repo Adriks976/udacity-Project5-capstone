@@ -54,7 +54,7 @@ def transformToBytes(photo):
     im = cv2.imread(photo)
 
     im_buf_arr = cv2.imencode(".{}".format(extension), im)
-    byte_im = im_buf_arr.tobytes()
+    byte_im = im_buf_arr[1].tobytes()
     return byte_im
 
 
