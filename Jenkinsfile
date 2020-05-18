@@ -45,6 +45,7 @@ pipeline {
         retry(3) {
           withAWS(region:'eu-west-1',credentials:'awscreds') {
             sh 'echo "Deploy to Kube"'
+            sh "aws eks --region eu-west-1 update-kubeconfig --name capstone"
             kubernetesDeploy(kubeconfigId: 'KubeConfig', configs: 'kubernetes/deployment.yml', enableConfigSubstitution: true)
           }
         }
