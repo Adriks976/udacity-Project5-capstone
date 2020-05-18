@@ -32,7 +32,8 @@ pipeline {
       steps {
         script {
           docker.withRegistry('', dockerhubCredentials) {
-            app.push()
+            app.push("${env.GIT_COMMIT}")
+            app.push("latest")
           }
         }
       }
