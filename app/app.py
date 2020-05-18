@@ -60,7 +60,7 @@ def transformToBytes(photo):
 
 def detect_text(imageBytes):
 
-    client = boto3.client('textract')
+    client = boto3.client('textract',region_name='eu-west-1')
     response = client.detect_document_text(Document={'Bytes': imageBytes})
     print(response)
     columns = []
