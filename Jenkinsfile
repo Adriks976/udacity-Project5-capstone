@@ -46,6 +46,7 @@ pipeline {
           withAWS(region:'eu-west-1',credentials:'awscreds') {
             sh 'echo "Deploy to Kube"'
             sh "aws eks --region eu-west-1 update-kubeconfig --name capstone"
+            sh 'sed -ie "s/latest/${GIT_COMMIT}/g" deployment.yml'
             sh "kubectl apply -f kubernetes/deployment.yml"
           }
         }
