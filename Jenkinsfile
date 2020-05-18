@@ -40,14 +40,13 @@ pipeline {
 
       }
     }
-
     stage('Deploy to Kubernetes') {
       steps {
-        withAWS(region:'eu-west-1',credentials:'awscreds') {
-          kubernetesDeploy(kubeconfigId: 'KubeConfig',
-            configs: 'kubernetes/deployment.yml',
-            enableConfigSubstitution: true,
-        )
+        retry(3) {
+          withAWS(region:'eu-west-1',credentials:'awscreds') {
+            sh 'echo "Deploy to Kube"'
+            kubernetesDeploy(kubeconfigId: 'KubeConfig', configs: 'kubernetes/deployment.yml', enableConfigSubstitution: true)
+          }
         }
       }
     }
