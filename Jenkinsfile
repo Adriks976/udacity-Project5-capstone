@@ -1,7 +1,4 @@
 pipeline {
-  environment {
-    dockerhubCredentials = 'dockerhubCredentials'
-  }
   agent any
   stages {
     stage('Install dependencies') {
@@ -10,24 +7,28 @@ pipeline {
         sh '. venv/bin/activate && make install'
       }
     }
+
     stage('Lint') {
       steps {
         sh '. venv/bin/activate && make lint'
       }
     }
+
     stage('Build docker') {
       steps {
         script {
           app = docker.build("adrik976/udacity-capstone")
         }
+
       }
     }
-    
+
     stage('Scan image') {
       steps {
-                aquaMicroscanner imageName: "adrik976/udacity-capstone", notCompliesCmd: 'exit 4', onDisallowed: 'ignore', outputFormat: 'html'
-            }
-        }
+        aquaMicroscanner(imageName: 'adrik976/udacity-capstone', notCompliesCmd: 'exit 4', onDisallowed: 'ignore', outputFormat: 'html')
+      }
+    }
+
     stage('Publish docker') {
       steps {
         script {
@@ -36,8 +37,10 @@ pipeline {
             app.push("latest")
           }
         }
+
       }
     }
+
     stage('Deploy to Kubernetes') {
       steps {
         withAWS(region:'eu-west-1',credentials:'awscreds') {
@@ -48,6 +51,9 @@ pipeline {
         }
       }
     }
-   
+
+  }
+  environment {
+    dockerhubCredentials = 'dockerhubCredentials'
   }
 }
