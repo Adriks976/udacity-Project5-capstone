@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udacity-capstone
+  labels:
+    app: capstone
+spec:
+  selector:
+    matchLabels:
+      app: capstone
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: capstone
+    spec:
+      volumes:
+      - name: uploads
+        emptyDir: {}
+      containers:
+      - name: capstone
+        image: adrik976/udacity-capstone:${GIT_COMMIT}
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /app/static/uploads
+            name: uploads

@@ -38,6 +38,14 @@ pipeline {
         }
       }
     }
-    
+    stage('Deploy to Kubernetes') {
+      steps {
+         kubernetesDeploy(kubeconfigId: 'KubeConfig',
+          configs: 'kubernetes/deployment.yml',
+          enableConfigSubstitution: true,
+        )
+      }
+    }
+   
   }
 }
