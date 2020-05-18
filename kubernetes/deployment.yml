@@ -25,7 +25,7 @@ spec:
         emptyDir: {}
       containers:
       - name: capstone
-        image: adrik976/udacity-capstone:toto
+        image: adrik976/udacity-capstone:latest
         imagePullPolicy: "Always"
         ports:
         - containerPort: 80
