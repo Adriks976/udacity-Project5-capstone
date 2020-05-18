@@ -25,7 +25,8 @@ spec:
         emptyDir: {}
       containers:
       - name: capstone
-        image: adrik976/udacity-capstone:${GIT_COMMIT}
+        image: adrik976/udacity-capstone
+        imagePullPolicy: "Always"
         ports:
         - containerPort: 80
         volumeMounts:
