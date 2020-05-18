@@ -40,10 +40,12 @@ pipeline {
     }
     stage('Deploy to Kubernetes') {
       steps {
-         kubernetesDeploy(kubeconfigId: 'KubeConfig',
-          configs: 'kubernetes/deployment.yml',
-          enableConfigSubstitution: true,
+        withAWS(region:'eu-west-1',credentials:'awscreds') {
+          kubernetesDeploy(kubeconfigId: 'KubeConfig',
+            configs: 'kubernetes/deployment.yml',
+            enableConfigSubstitution: true,
         )
+        }
       }
     }
    
